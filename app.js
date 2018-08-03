@@ -7,6 +7,7 @@ var index = require('./controller/index')
 var dbConfig =require('./database/config')
 var session = require('express-session')
 var MongoStore = require('connect-mongo')(session)
+var proxy = require('http-proxy-middleware');
 
 var app = express();
 
@@ -30,6 +31,13 @@ app.use(session({
         ttl:14 * 24 * 60 * 60
     })
 }))
+app.use('/pic', proxy({
+    target: 'http://11.yaojunrong.com/api/client/upload',
+    changeOrigin: true,
+    pathRewrite:{
+        "/pic":"/"
+    }
+}));
 
 app.use('/',index);
 
