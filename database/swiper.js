@@ -3,8 +3,7 @@ const mongoose = require('mongoose');
 const  swiper = new mongoose.Schema({
 
     title: {
-        type: String,
-        index: 1
+        type: String
     },
     pic:{
         type:String

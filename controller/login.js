@@ -49,27 +49,6 @@ router.delete('/logout',(req,res)=>{
     })
 })
 
-router.post('/addSwiper', (req, res) => {
-    if(req.session.user) {
-        let {title,pic} = req.body
-        user.create({
-            title,
-            pic
-        }).then(data => {
-            res.json({
-                code: 200,
-                msg: '轮播图上传成功'
-            })
-        })
-    }
-    else {
-        res.json({
-            code: 403,
-            msg: '未登录不能上传'
-        })
-    }
-});
-
 router.post('/msgchange',(req,res)=>{
     let {usericon} = req.body
     let email =  req.session.user.email
